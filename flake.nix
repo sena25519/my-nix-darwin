@@ -30,8 +30,8 @@
 	GHQ_ROOT = "$HOME/Work/Sources";
       };
 
-      homebrew.brews = [ "orbstack" ];
-      homebrew.casks = [ "zed" "obs" ];
+      homebrew.enable = true;
+      homebrew.casks = [ "zed" "obs" "orbstack" ];
       
       system.primaryUser = "asena";
       security.pam.services.sudo_local.touchIdAuth = true;
