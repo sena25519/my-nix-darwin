@@ -91,7 +91,7 @@
   in {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#proxyhebat
-    darwinConfigurations."proxyterhebat" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."proxyhebat" = nix-darwin.lib.darwinSystem {
       modules = [configuration];
     };
   };
