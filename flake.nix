@@ -7,44 +7,56 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
-  let
-    configuration = { pkgs, ... }: {
+  outputs = inputs @ {
+    self,
+    nix-darwin,
+    nixpkgs,
+  }: let
+    configuration = {pkgs, ...}: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        with pkgs; [ 
-          git
-	  gh
-	  ghq
-          curl
-          wget
-	  neovim
-	  btop
-	  fastfetch
-	  devenv
-	  gnupg
-        ];
+      environment.systemPackages = with pkgs; [
+        git
+        gh
+        ghq
+        curl
+        wget
+        neovim
+        btop
+        fastfetch
+        devenv
+        gnupg
+      ];
 
       environment.variables = {
-	GHQ_ROOT = "$HOME/Work/Sources";
+        GHQ_ROOT = "$HOME/Work/Sources";
       };
 
       homebrew.enable = true;
-      homebrew.casks = [ "zed" "obs" "orbstack" ];
-      
+      homebrew.casks = [
+        "zed"
+        "github"
+        "orbstack"
+        "obsidian"
+        "obs"
+      ];
+
       system.primaryUser = "asena";
       security.pam.services.sudo_local.touchIdAuth = true;
       time.timeZone = "Asia/Jakarta";
       services.dnscrypt-proxy.enable = true;
       nix.gc = {
         automatic = true;
-	interval = { Weekday = 0; Hour = 0; Minute = 0; };
+        interval = {
+          Weekday = 0;
+          Hour = 0;
+          Minute = 0;
+        };
         options = "--delete-older-than 30d";
       };
 
       # Necessary for using flakes on this system.
-      nix.settings.trusted-users = [ "root" "asena" ];
+      nix.settings.trusted-users = ["root" "asena"];
       nix.settings.experimental-features = "nix-command flakes";
 
       # Enable alternative shell support in nix-darwin.
@@ -76,12 +88,11 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
-  in
-  {
+  in {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#proxyterhebat
     darwinConfigurations."proxyterhebat" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [configuration];
     };
   };
 }
