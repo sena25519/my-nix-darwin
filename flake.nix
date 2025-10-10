@@ -74,7 +74,7 @@
       programs.tmux.enableVim = true;
       programs.tmux.enableMouse = true;
 
-      networking.hostName = "proxyterhebat";
+      networking.hostName = "proxyhebat";
       networking.applicationFirewall.enable = true;
       networking.applicationFirewall.enableStealthMode = true;
 
@@ -90,7 +90,7 @@
     };
   in {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#proxyterhebat
+    # $ darwin-rebuild build --flake .#proxyhebat
     darwinConfigurations."proxyterhebat" = nix-darwin.lib.darwinSystem {
       modules = [configuration];
     };
