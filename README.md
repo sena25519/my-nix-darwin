@@ -1,5 +1,7 @@
 # Installation
 
+> Purely handwritten. No AI. #NPD
+
 ```bash
 # System Preferences
 defaults write com.apple.screencapture type jpg && \ # take screenshots as jpg (usually smaller size) and not png
