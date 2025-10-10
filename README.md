@@ -46,7 +46,7 @@ curl -L https://github.com/NixOS/experimental-nix-installer/releases/download/0.
 sudo git clone https://github.com/sena25519/my-nix-darwin.git /etc/nix-darwin
 
 # Install Nix-Darwin
-sudo nix run nix-darwin/master#darwin-rebuild -- switch
+sudo nix --extra-experimental-features nix-command --extra-experimental-features flakes run nix-darwin/master#darwin-rebuild -- switch
 
 # Import gpg keys
 gpg --import /path/to/gpgkey
