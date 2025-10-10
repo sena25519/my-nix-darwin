@@ -34,7 +34,7 @@ sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 curl -L https://github.com/NixOS/experimental-nix-installer/releases/download/0.27.0/nix-installer.sh | sh -s -- install
 
 # Clone this repo to /etc/nix-darwin
-git clone https://github.com/sena25519/my-nix-darwin.git
+sudo git clone https://github.com/sena25519/my-nix-darwin.git /etc/nix-darwin
 
 # Install Nix-Darwin
 sudo nix run nix-darwin/master#darwin-rebuild -- switch
